@@ -90,6 +90,7 @@ from aioquic.quic.events import ProtocolNegotiated, StreamReset, QuicEvent
 BIND_ADDRESS = '::1'
 BIND_PORT = 4433
 
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 # CounterHandler implements a really simple protocol:
