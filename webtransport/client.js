@@ -7,7 +7,19 @@ let currentTransport, streamNumber, currentTransportDatagramWriter;
 async function connect() {
   const url = document.getElementById('url').value;
   try {
-    var transport = new WebTransport(url);
+    var transport = new WebTransport(url, {
+        serverCertificateHashes: [
+          {
+            algorithm: "sha-256",
+            value: new Uint8Array([
+              0xda, 0x57, 0x7c, 0x53, 0x8e, 0x14, 0x5f, 0x56,
+              0x65, 0x24, 0x3b, 0xbb, 0xb7, 0x88, 0x39, 0x79,
+              0xca, 0x31, 0x2e, 0xcc, 0xa3, 0x7e, 0x27, 0x54,
+              0x23, 0xe1, 0x4a, 0x2b, 0xa0, 0xab, 0xe7, 0xb7,
+            ]),
+          },
+        ],
+    });
     addToEventLog('Initiating connection...');
   } catch (e) {
     addToEventLog('Failed to create connection object. ' + e, 'error');
